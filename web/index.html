@@ -61,17 +61,19 @@
     </div>
   </main>
 
-  <!-- LuaPop chat widget. Requires this page's domain to be added under
-       Chat Widget → Customization in the Lua Admin Dashboard first — see
-       README for the manual step. -->
+  <!-- LuaPop chat widget. Tested both the dashboard's bare init() and an
+       explicit config here — bare init() left window.LuaPop.config with an
+       EMPTY agentId and defaulted environment to "staging" (confirmed via
+       devtools), so it never even attempted a network call. This agent is
+       only deployed to production, so the widget needs both agentId and
+       environment: "production" explicitly. Domain must still be
+       whitelisted under Chat Widget → Customization first. -->
   <script src="https://lua-ai-global.github.io/lua-pop/lua-pop.umd.js"></script>
   <script>
     window.LuaPop.init({
       agentId: "baseAgent_agent_1788282506715_rhepqvec9",
-      position: "bottom-right",
-      chatTitle: "HR Assistant",
-      buttonText: "💬 Ask HR",
-      welcomeMessage: "Hi! Ask me about leave, gratuity, Iqama renewal, or your team's check-ins."
+      environment: "production",
+      position: "bottom-right"
     });
   </script>
 </body>
