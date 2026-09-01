@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>HR Portal</title>
+  <style>
+    body {
+      margin: 0;
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+      background: #f5f6f8;
+      color: #1a1a1a;
+    }
+    header {
+      background: #0f2d52;
+      color: white;
+      padding: 24px 32px;
+    }
+    header h1 {
+      margin: 0;
+      font-size: 1.4rem;
+    }
+    main {
+      max-width: 720px;
+      margin: 48px auto;
+      padding: 0 24px;
+    }
+    .card {
+      background: white;
+      border-radius: 8px;
+      padding: 24px;
+      box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+      margin-bottom: 16px;
+    }
+    .card h2 {
+      margin-top: 0;
+      font-size: 1.1rem;
+    }
+    .card p {
+      color: #555;
+      line-height: 1.5;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>HR Portal</h1>
+  </header>
+  <main>
+    <div class="card">
+      <h2>Leave management</h2>
+      <p>Check your leave balance, submit a request, or review your team's pending approvals — in English or Arabic.</p>
+    </div>
+    <div class="card">
+      <h2>Daily check-ins</h2>
+      <p>Team leads can log daily check-ins for their direct reports and pull a weekly performance summary.</p>
+    </div>
+    <div class="card">
+      <h2>Need help?</h2>
+      <p>Use the chat button in the corner to ask the HR assistant anything — leave policy, gratuity estimates, Iqama renewal, and more.</p>
+    </div>
+  </main>
+
+  <!-- LuaPop chat widget. Requires this page's domain to be added under
+       Chat Widget → Customization in the Lua Admin Dashboard first — see
+       README for the manual step. -->
+  <script src="https://lua-ai-global.github.io/lua-pop/lua-pop.umd.js"></script>
+  <script>
+    window.LuaPop.init({
+      agentId: "baseAgent_agent_1788282506715_rhepqvec9",
+      position: "bottom-right",
+      chatTitle: "HR Assistant",
+      buttonText: "💬 Ask HR",
+      welcomeMessage: "Hi! Ask me about leave, gratuity, Iqama renewal, or your team's check-ins."
+    });
+  </script>
+</body>
+</html>
