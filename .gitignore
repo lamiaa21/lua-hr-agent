@@ -1,0 +1,28 @@
+# Environment files
+.env
+.env.*
+!.env.example
+
+# Google service-account key files (never commit real credentials)
+*service-account*.json
+*service_account*.json
+*serviceAccount*.json
+*.key.json
+
+# Dependencies
+node_modules/
+
+# Compiled output / Lua build artifacts
+dist/
+dist-v2/
+.lua/
+*.js
+*.js.map
+
+# IDE files
+.vscode/
+.idea/
+
+# OS files
+.DS_Store
+Thumbs.db
