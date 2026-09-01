@@ -40,6 +40,15 @@ export class MockBambooAdapter implements HRISClient {
     return MOCK_EMPLOYEES.find((e) => e.phone === phone) ?? null;
   }
 
+  async findEmployeeByName(name: string): Promise<Employee | null> {
+    const needle = name.trim().toLowerCase();
+    return (
+      MOCK_EMPLOYEES.find(
+        (e) => e.displayName.toLowerCase().includes(needle) || e.displayNameAr.includes(name.trim()),
+      ) ?? null
+    );
+  }
+
   async getDirectReports(managerId: string): Promise<Employee[]> {
     return MOCK_EMPLOYEES.filter((e) => e.supervisorId === managerId);
   }

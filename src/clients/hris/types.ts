@@ -63,6 +63,12 @@ export interface CreateLeaveRequestInput {
 export interface HRISClient {
   getEmployee(id: string): Promise<Employee>;
   findEmployeeByPhone(phone: string): Promise<Employee | null>;
+  /**
+   * Case-insensitive name lookup, added beyond the original interface sketch
+   * so "How did Ahmad's team perform?" can resolve a manager from a first
+   * name alone, not just an HRIS id.
+   */
+  findEmployeeByName(name: string): Promise<Employee | null>;
   getDirectReports(managerId: string): Promise<Employee[]>;
   getLeaveBalances(employeeId: string): Promise<LeaveBalance[]>;
   createLeaveRequest(input: CreateLeaveRequestInput): Promise<LeaveRequest>;

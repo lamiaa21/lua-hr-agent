@@ -4,6 +4,8 @@ import { GetLeavePolicy } from './tools/leave/GetLeavePolicy.js';
 import { RequestLeave } from './tools/leave/RequestLeave.js';
 import { ListPendingApprovals } from './tools/leave/ListPendingApprovals.js';
 import { DecideLeaveRequest } from './tools/leave/DecideLeaveRequest.js';
+import { SubmitDailyCheckin } from './tools/performance/SubmitDailyCheckin.js';
+import { GetTeamSummary } from './tools/performance/GetTeamSummary.js';
 
 const leaveSkill = new LuaSkill({
   name: 'leave-management',
@@ -24,6 +26,17 @@ const leaveSkill = new LuaSkill({
   ],
 });
 
+const performanceSkill = new LuaSkill({
+  name: 'performance-management',
+  description: "Record team leads' daily check-ins for their direct reports and summarize a team's weekly performance.",
+  context: `Use these tools for daily performance check-ins and team summaries.
+
+- submit_daily_checkin needs the team lead's HRIS id and one entry per employee. If the user hasn't given their employee id, ask for it first. Confirm the entries back before submitting.
+- get_team_summary accepts a manager's name or HRIS id — resolve names like "Ahmad" without asking for an id if the name is enough to identify them.
+- When summarizing a team, always mention the trend vs the previous week and call out any recurring blockers, not just the average rating.`,
+  tools: [new SubmitDailyCheckin(), new GetTeamSummary()],
+});
+
 const agent = new LuaAgent({
   name: 'hr-agent',
   persona: `You are the HR assistant for a 50,000-employee industrial conglomerate headquartered in Riyadh, with operations in the UAE, Egypt, and Jordan. You serve office staff via web chat and field workers via WhatsApp.
@@ -40,7 +53,7 @@ Tone: warm but efficient. Field workers on WhatsApp want short answers. Confirm 
 
 Formatting: plain text or simple markdown only (bold, bullet points). Never invent custom block or card syntax — WhatsApp and the web chat widget render plain text, not UI components.`,
   model: 'anthropic/claude-haiku-4-5',
-  skills: [leaveSkill],
+  skills: [leaveSkill, performanceSkill],
 });
 
 export default agent;

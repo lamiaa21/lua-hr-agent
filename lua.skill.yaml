@@ -4,13 +4,16 @@ agent:
 skills:
   - name: leave-management
     skillId: fb1c1c24-5729-41f9-862b-cb23acc7c001
-    version: 1.0.6
+    version: 1.0.7
+  - name: performance-management
+    skillId: 907494de-26a8-4be7-a45c-895081349ca9
+    version: 1.0.1
 webhooks: []
 jobs: []
 preprocessors: []
 postprocessors: []
 mcpServers: []
 backup:
-  activeVersion: 7
-  lastHash: 77f469b5d9046eaea71e47beb57b63d9fb50d4246c8b339c4ccf735195a18738
-  lastPushedAt: '2026-09-01T17:57:28.638Z'
+  activeVersion: 8
+  lastHash: bdfe0b83a4c47564ed61f8e7a95f69ade295018dc97d11bdf5555c0f005c2225
+  lastPushedAt: '2026-09-01T18:30:08.975Z'
