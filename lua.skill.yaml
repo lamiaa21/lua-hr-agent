@@ -4,19 +4,19 @@ agent:
 skills:
   - name: leave-management
     skillId: fb1c1c24-5729-41f9-862b-cb23acc7c001
-    version: 1.0.9
+    version: 1.0.10
   - name: performance-management
     skillId: 907494de-26a8-4be7-a45c-895081349ca9
-    version: 1.0.3
+    version: 1.0.4
   - name: hr-core
     skillId: 67d0503a-6c1a-4b47-9a97-013fddc796da
-    version: 1.0.2
+    version: 1.0.3
 webhooks: []
 jobs: []
 preprocessors: []
 postprocessors: []
 mcpServers: []
 backup:
-  activeVersion: 10
-  lastHash: aa0a1882a305a3ee8f302dd49793c00a63da3595d2d36fac117720addbf6707d
-  lastPushedAt: '2026-09-01T18:55:11.495Z'
+  activeVersion: 11
+  lastHash: a261c7c615fec24672f6701e359fbea43d4eb1ba2045871172c27cbf48739b65
+  lastPushedAt: '2026-09-01T19:14:46.373Z'
