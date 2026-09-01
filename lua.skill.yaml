@@ -1,13 +1,16 @@
 agent:
   agentId: baseAgent_agent_1788282506715_rhepqvec9
   orgId: 43b67949-8d22-43bb-a99e-f7ad919f6b9b
-skills: []
+skills:
+  - name: leave-management
+    skillId: fb1c1c24-5729-41f9-862b-cb23acc7c001
+    version: 1.0.6
 webhooks: []
 jobs: []
 preprocessors: []
 postprocessors: []
 mcpServers: []
 backup:
-  activeVersion: 1
-  lastHash: 60cc8ed53c9744b3b00e6617b0a59c24179fb4e670536c6b4fd51728e2236a1b
-  lastPushedAt: '2026-09-01T17:17:05.810Z'
+  activeVersion: 7
+  lastHash: 77f469b5d9046eaea71e47beb57b63d9fb50d4246c8b339c4ccf735195a18738
+  lastPushedAt: '2026-09-01T17:57:28.638Z'
