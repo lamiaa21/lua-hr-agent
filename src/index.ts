@@ -6,6 +6,8 @@ import { ListPendingApprovals } from './tools/leave/ListPendingApprovals.js';
 import { DecideLeaveRequest } from './tools/leave/DecideLeaveRequest.js';
 import { SubmitDailyCheckin } from './tools/performance/SubmitDailyCheckin.js';
 import { GetTeamSummary } from './tools/performance/GetTeamSummary.js';
+import { CalculateGratuity } from './tools/hr/CalculateGratuity.js';
+import { CheckIqamaExpiry } from './tools/hr/CheckIqamaExpiry.js';
 
 const leaveSkill = new LuaSkill({
   name: 'leave-management',
@@ -37,6 +39,18 @@ const performanceSkill = new LuaSkill({
   tools: [new SubmitDailyCheckin(), new GetTeamSummary()],
 });
 
+const hrCoreSkill = new LuaSkill({
+  name: 'hr-core',
+  description: "Calculate end-of-service gratuity (KSA) and check Iqama residency-permit expiry for KSA employees.",
+  context: `Use these tools for gratuity and Iqama questions.
+
+- calculate_gratuity only covers KSA employees in this build — if asked about another country, say so plainly rather than guessing at a figure.
+- Always relay the breakdown and rule citations with a gratuity figure, not just the total — that's what makes the calculation defensible.
+- check_iqama_expiry with no employeeId lists everyone inside the alert window — use that for "who's expiring soon" questions. Pass an employeeId to check one person.
+- Mention the disclaimer that these are mock figures modelled on public labour-law summaries, not legal advice, whenever you state a gratuity amount.`,
+  tools: [new CalculateGratuity(), new CheckIqamaExpiry()],
+});
+
 const agent = new LuaAgent({
   name: 'hr-agent',
   persona: `You are the HR assistant for a 50,000-employee industrial conglomerate headquartered in Riyadh, with operations in the UAE, Egypt, and Jordan. You serve office staff via web chat and field workers via WhatsApp.
@@ -53,7 +67,7 @@ Tone: warm but efficient. Field workers on WhatsApp want short answers. Confirm 
 
 Formatting: plain text or simple markdown only (bold, bullet points). Never invent custom block or card syntax — WhatsApp and the web chat widget render plain text, not UI components.`,
   model: 'anthropic/claude-haiku-4-5',
-  skills: [leaveSkill, performanceSkill],
+  skills: [leaveSkill, performanceSkill, hrCoreSkill],
 });
 
 export default agent;
