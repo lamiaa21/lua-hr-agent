@@ -8,6 +8,7 @@ import { SubmitDailyCheckin } from './tools/performance/SubmitDailyCheckin.js';
 import { GetTeamSummary } from './tools/performance/GetTeamSummary.js';
 import { CalculateGratuity } from './tools/hr/CalculateGratuity.js';
 import { CheckIqamaExpiry } from './tools/hr/CheckIqamaExpiry.js';
+import { SearchHRKnowledge } from './tools/hr/SearchHRKnowledge.js';
 
 const leaveSkill = new LuaSkill({
   name: 'leave-management',
@@ -47,8 +48,9 @@ const hrCoreSkill = new LuaSkill({
 - calculate_gratuity only covers KSA employees in this build — if asked about another country, say so plainly rather than guessing at a figure.
 - Always relay the breakdown and rule citations with a gratuity figure, not just the total — that's what makes the calculation defensible.
 - check_iqama_expiry with no employeeId lists everyone inside the alert window — use that for "who's expiring soon" questions. Pass an employeeId to check one person.
-- Mention the disclaimer that these are mock figures modelled on public labour-law summaries, not legal advice, whenever you state a gratuity amount.`,
-  tools: [new CalculateGratuity(), new CheckIqamaExpiry()],
+- Mention the disclaimer that these are mock figures modelled on public labour-law summaries, not legal advice, whenever you state a gratuity amount.
+- For SOP questions (salary certificates, exit/re-entry visas, probation, public holidays) or any policy question the other tools don't directly answer, use search_hr_knowledge and cite the returned document title. If it returns found: false, say plainly that this isn't covered and the employee should escalate to HR — never invent a policy.`,
+  tools: [new CalculateGratuity(), new CheckIqamaExpiry(), new SearchHRKnowledge()],
 });
 
 const agent = new LuaAgent({
